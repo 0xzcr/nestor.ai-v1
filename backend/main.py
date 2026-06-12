@@ -5,12 +5,12 @@ import redis.asyncio as redis
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.config import get_settings
-from backend.routers import query as query_router
-from backend.routers import upload as upload_router
-from backend.services.embeddings import embed_texts, format_query_for_embedding
-from backend.services.generator import call_cerebras_with_retry
-from backend.services.qdrant_client import create_qdrant_client, ensure_collections
+from config import get_settings
+from routers import query as query_router
+from routers import upload as upload_router
+from services.embeddings import embed_texts, format_query_for_embedding
+from services.generator import call_cerebras_with_retry
+from services.qdrant_client import create_qdrant_client, ensure_collections
 
 settings = get_settings()
 
@@ -26,7 +26,11 @@ async def lifespan(app_instance: FastAPI):
     app_instance.state.settings = settings
     app_instance.state.cerebras_semaphore = asyncio.Semaphore(10)  # Rate limit Cerebras calls
     app_instance.state.qdrant_client = create_qdrant_client()
-    app_instance.state.redis_client = redis.from_url(settings.redis_url, decode_responses=True)
+    app_instance.state.redis_client = redis.from_url(
+        settings.redis_url,
+        password=settings.redis_token or None,
+        decode_responses=True,
+    )
     await ensure_collections(app_instance.state.qdrant_client)
 
     async def embed_text(text: str) -> list[float]:
