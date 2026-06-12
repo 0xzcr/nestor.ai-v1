@@ -3,10 +3,10 @@ import os
 from fastapi import APIRouter, Depends, File, HTTPException, Request, UploadFile, status
 from supabase import create_client
 
-from backend.config import get_settings
-from backend.models.query import UploadResponse
-from backend.routers.auth import CurrentUser, get_current_user
-from backend.services.ingestion import ingest_pdf, persist_upload_to_temp
+from config import get_settings
+from models.query import UploadResponse
+from routers.auth import CurrentUser, get_current_user
+from services.ingestion import ingest_pdf, persist_upload_to_temp
 
 router = APIRouter(prefix="", tags=["upload"])
 

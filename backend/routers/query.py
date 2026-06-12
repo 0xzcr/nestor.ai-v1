@@ -4,20 +4,20 @@ import json
 from fastapi import APIRouter, Depends, Request
 from fastapi.responses import StreamingResponse
 
-from backend.models.query import QueryRequest
-from backend.routers.auth import CurrentUser, get_current_user
-from backend.services.cache import (
+from models.query import QueryRequest
+from routers.auth import CurrentUser, get_current_user
+from services.cache import (
     get_exact_cache,
     get_semantic_cache,
     set_exact_cache,
     set_semantic_cache,
 )
-from backend.services.fetcher import fetch_all_sources
-from backend.services.generator import generate_answer
-from backend.services.qdrant_client import user_has_uploads
-from backend.services.query_analyzer import analyze_query
-from backend.services.reranker import rerank_chunks
-from backend.services.validator import apply_validation_result, validate_citations
+from services.fetcher import fetch_all_sources
+from services.generator import generate_answer
+from services.qdrant_client import user_has_uploads
+from services.query_analyzer import analyze_query
+from services.reranker import rerank_chunks
+from services.validator import apply_validation_result, validate_citations
 
 router = APIRouter(prefix="", tags=["query"])
 
