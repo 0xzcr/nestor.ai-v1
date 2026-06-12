@@ -1,0 +1,42 @@
+frontend/.next
+frontend/node_modules
+backend/__pycache__
+backend/**/*.pyc
+backend/**/__pycache__
+
+# Environment variables (NEVER commit secrets)
+.env
+.env.local
+.env.local.example
+.env*.local
+
+# Virtual environments
+backend/venv
+backend/env
+backend/.venv
+
+# Python
+*.egg-info
+dist
+build
+.pytest_cache
+
+# Frontend
+.turbo
+.dist
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+backend/backend.log
+frontend/frontend.log
