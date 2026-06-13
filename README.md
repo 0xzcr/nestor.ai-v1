@@ -1,4 +1,4 @@
-# 🧬 Anatomy RAG MVP — Zero-Hallucination AI for Medical Students
+# 🧬 Anatomy RAG MVP — Reduced-Hallucination AI for Medical Students
 
 A production-quality, zero-hallucination Retrieval-Augmented Generation (RAG) system for anatomy education. Every answer is traceable to source documents, with claim-level citations.
 
